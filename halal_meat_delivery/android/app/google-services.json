@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "766712501645",
+    "firebase_url": "https://halalmeatdelivery-4149e.firebaseio.com",
+    "project_id": "halalmeatdelivery-4149e",
+    "storage_bucket": "halalmeatdelivery-4149e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766712501645:android:99f54898dbe534e9",
+        "android_client_info": {
+          "package_name": "com.yali.halalmeatdelivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766712501645-pi1bg3lssa0te0c3dmggaf08k28d84vv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yali.halalmeatdelivery",
+            "certificate_hash": "26c46dca33dda65952eb2ecea336221af69c16d3"
+          }
+        },
+        {
+          "client_id": "766712501645-20sqk8i5tb64m8pjdn0bjc4kmdl3thsc.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "766712501645-20sqk8i5tb64m8pjdn0bjc4kmdl3thsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7RgZoDj8tbB6XCrU5KYKSgXvfAsFFInk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766712501645-20sqk8i5tb64m8pjdn0bjc4kmdl3thsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

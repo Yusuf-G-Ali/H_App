@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/halal_meat_delivery.iml" filepath="$PROJECT_DIR$/halal_meat_delivery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/halal_meat_delivery_android.iml" filepath="$PROJECT_DIR$/halal_meat_delivery_android.iml" />
+    </modules>
+  </component>
+</project>
