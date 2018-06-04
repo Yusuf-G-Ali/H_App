@@ -58,7 +58,7 @@ class LoginPageState extends State<LoginPage>
           data: new ThemeData(
               brightness: Brightness.dark,
               inputDecorationTheme: new InputDecorationTheme(
-              labelStyle: new TextStyle(color: Colors.white, fontSize: 18.5),
+                labelStyle: new TextStyle(color: Colors.white, fontSize: 18.5),
               )),
           isMaterialAppTheme: true,
           child: new Column(
@@ -101,8 +101,14 @@ class LoginPageState extends State<LoginPage>
                                 color: Colors.blue,
                                 splashColor: Colors.white,
                                 textColor: Colors.white,
-                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
-                                child: new Text('Register', style: new TextStyle(fontWeight: FontWeight.bold),),
+                                shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(15.0)),
+                                child: new Text(
+                                  'Register',
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
@@ -115,8 +121,14 @@ class LoginPageState extends State<LoginPage>
                                 color: Colors.blue,
                                 splashColor: Colors.white,
                                 textColor: Colors.white,
-                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
-                                child: new Text('Sign in', style: new TextStyle(fontWeight: FontWeight.bold),),
+                                shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(15.0)),
+                                child: new Text(
+                                  'Sign in',
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 onPressed: () {},
                               ),
                             ),
@@ -130,17 +142,22 @@ class LoginPageState extends State<LoginPage>
                         width: 250.0,
                         child: new RaisedButton(
                           color: new Color(0xffdd4b39),
-                           splashColor: Colors.white,
+                          splashColor: Colors.white,
                           textColor: Colors.white,
-                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
                           child: new Row(
                             children: <Widget>[
                               new Icon(
                                 new IconData(0xf1a0, fontFamily: '_kFontFam'),
                                 size: 25.0,
                               ),
-                              new Padding(padding: const EdgeInsets.only(right: 50.0)),
-                              new Text('Sign in with Google',style: new TextStyle(fontWeight: FontWeight.bold)),],
+                              new Padding(
+                                  padding: const EdgeInsets.only(right: 50.0)),
+                              new Text('Sign in with Google',
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
                           onPressed: () {},
                         ),
@@ -154,15 +171,20 @@ class LoginPageState extends State<LoginPage>
                           color: new Color(0xff3b5998),
                           splashColor: Colors.white,
                           textColor: Colors.white,
-                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(10.0)),
                           child: new Row(
                             children: <Widget>[
                               new Icon(
-                              const IconData(0xf308, fontFamily: '_kFontFam'),
-                              size: 25.0,
-                            ),
-                            new Padding(padding: const EdgeInsets.only(right: 40.0)),
-                            new Text('Sign in with Facebook', style: new TextStyle(fontWeight: FontWeight.bold)),],
+                                const IconData(0xf308, fontFamily: '_kFontFam'),
+                                size: 25.0,
+                              ),
+                              new Padding(
+                                  padding: const EdgeInsets.only(right: 40.0)),
+                              new Text('Sign in with Facebook',
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
                           onPressed: () {},
                         ),
@@ -175,13 +197,14 @@ class LoginPageState extends State<LoginPage>
           ),
         ),
       ]),
-
       floatingActionButton: new FloatingActionButton(
-        mini: true,
         tooltip: 'go home',
         backgroundColor: Colors.white,
-        onPressed: ()=> Navigator.of(context).pushReplacementNamed('/HomePage'),
+        mini: true,
+        onPressed: () =>
+            Navigator.of(context).pushReplacementNamed('/HomePage'),
         child: new Icon(Icons.home),
-      ),);
+      ),
+    );
   }
 }

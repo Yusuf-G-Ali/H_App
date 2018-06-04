@@ -10,7 +10,6 @@ import 'AboutUs.dart';
 import 'dart:async';
 import 'LoginPage.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -20,7 +19,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
 
@@ -28,8 +26,8 @@ class _HomePageState extends State<HomePage> {
   String _userEmail = "Sign In";
   String _photoUrl;
 
-  void _updateUserInfo(String name, String email, String photoUrl){
-    setState((){
+  void _updateUserInfo(String name, String email, String photoUrl) {
+    setState(() {
       _userName = name;
       _userEmail = email;
       _photoUrl = photoUrl;
@@ -37,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<FirebaseUser> _signIn() async {
-
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
 
@@ -48,17 +45,18 @@ class _HomePageState extends State<HomePage> {
     return user;
   }
 
-  Widget _signInStatus(){
-    if (_userName == 'guest'){
+  Widget _signInStatus() {
+    if (_userName == 'guest') {
       return new ListTile(
         title: new Text("Sign In",
             style: new TextStyle(
               fontWeight: FontWeight.bold,
             )),
         leading: new Icon(const IconData(0xe800, fontFamily: '_kFontFam')),
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => new LoginPage()
-        )),);
-    }else {
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => new LoginPage())),
+      );
+    } else {
       return new ListTile(
         title: new Text("Log Out",
             style: new TextStyle(
@@ -69,6 +67,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
   }
+
   void _signOut() {
     googleSignIn.signOut();
     Navigator.pop(context);
@@ -209,11 +208,15 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               //if user not logged in yet
               new UserAccountsDrawerHeader(
-                accountName:  new Text('Welcome $_userName'),
+                accountName: new Text('Welcome $_userName'),
                 accountEmail: new GestureDetector(
-                  child: new Text(_userEmail),
-                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => new LoginPage(),),)
-                ),
+                    child: new Text(_userEmail),
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => new LoginPage(),
+                          ),
+                        )),
                 currentAccountPicture: new GestureDetector(
                     child: new CircleAvatar(
                       backgroundImage: _profileImage(),
@@ -311,10 +314,12 @@ class _HomePageState extends State<HomePage> {
       body: _gridViewBuilder(),
       floatingActionButton: new FloatingActionButton(
           tooltip: 'Go to cart',
+          mini: true,
           child: new Icon(Icons.shopping_cart),
           onPressed: () => Navigator.push(
-                context, new MaterialPageRoute(builder: (context) => new MyCart()),
-          )), // This trailing comma makes auto-formatting nicer for build methods.
+                context,
+                new MaterialPageRoute(builder: (context) => new MyCart()),
+              )), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
