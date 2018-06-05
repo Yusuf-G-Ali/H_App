@@ -7,7 +7,6 @@ import 'HalalCertifications.dart';
 import 'Products.dart';
 import 'HelpAndSupport.dart';
 import 'AboutUs.dart';
-import 'dart:async';
 import 'LoginPage.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,30 +18,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = new GoogleSignIn();
-
+  FirebaseAuth auth = FirebaseAuth.instance;
+  GoogleSignIn googleSignIn = new GoogleSignIn();
   String _userName = 'guest';
   String _userEmail = "Sign In";
   String _photoUrl;
 
-  void _updateUserInfo(String name, String email, String photoUrl) {
-    setState(() {
-      _userName = name;
-      _userEmail = email;
-      _photoUrl = photoUrl;
-    });
-  }
-
-  Future<FirebaseUser> _signIn() async {
-    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
-
-    FirebaseUser user = await _auth.signInWithGoogle(
-        idToken: gSA.idToken, accessToken: gSA.accessToken);
-
-    _updateUserInfo(user.displayName, user.email, googleSignInAccount.photoUrl);
-    return user;
+  @override
+  void initState() {
+    super.initState();
+    auth.currentUser().then((user) {
+      if (user != null) {
+        setState(() {
+          _userName = user.displayName;
+          _userEmail = user.email;
+          _photoUrl = user.photoUrl;
+        });
+      }
+    }).catchError((e) => print(e));
   }
 
   Widget _signInStatus() {
@@ -69,16 +62,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _signOut() {
-    googleSignIn.signOut();
+    auth.signOut().then((signOut) {
+      setState(() {
+        _userName = 'guest';
+        _userEmail = 'Sign in';
+        _photoUrl = null;
+      });
+    }).catchError((e) => print(e));
     Navigator.pop(context);
-    _updateUserInfo("guest", 'SignIn', null);
   }
 
   ImageProvider _profileImage() {
-    if (_photoUrl != null) {
-      return NetworkImage(_photoUrl);
-    } else {
+    if (_photoUrl == null) {
       return AssetImage('./assets/user.png');
+    } else {
+      return NetworkImage(_photoUrl);
     }
   }
 
@@ -210,13 +208,18 @@ class _HomePageState extends State<HomePage> {
               new UserAccountsDrawerHeader(
                 accountName: new Text('Welcome $_userName'),
                 accountEmail: new GestureDetector(
-                    child: new Text(_userEmail),
-                    onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => new LoginPage(),
-                          ),
-                        )),
+                  child: new Text(_userEmail),
+                  onTap: () {
+                    auth.currentUser().then((user) {
+                      if (user == null) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => new LoginPage()));
+                      }
+                    }).catchError((e) => print(e));
+                  },
+                ),
                 currentAccountPicture: new GestureDetector(
                     child: new CircleAvatar(
                       backgroundImage: _profileImage(),

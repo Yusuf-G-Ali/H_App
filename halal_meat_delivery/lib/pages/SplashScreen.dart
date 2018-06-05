@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    super.initState();
     startTime();
     //lock screen to portrait view
     super.initState();

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,6 +13,20 @@ class LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   Animation<double> _iconAnimation;
   AnimationController _iconAnimationController;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = new GoogleSignIn();
+
+
+  Future<FirebaseUser> _signWithGoogle() async {
+    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
+
+    FirebaseUser user = await _auth.signInWithGoogle(
+        idToken: gSA.idToken, accessToken: gSA.accessToken);
+
+    return user;
+  }
 
   @override
   void initState() {
@@ -159,7 +176,7 @@ class LoginPageState extends State<LoginPage>
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: ()=> _signWithGoogle(),
                         ),
                       ),
                       new Padding(
